@@ -169,7 +169,7 @@ let htmlescape s =
 
 let reserved_flags = [
 	"cross";"flash8";"js";"neko";"flash";"php";"cpp";"cs";"java";
-	"as3";"swc";"macro";"sys"
+	"as3";"swc";"macro";"sys";"swift"
 	]
 
 let complete_fields com fields =
@@ -1050,6 +1050,9 @@ try
 		("-python",Arg.String (fun dir ->
 			set_platform Python dir;
 		),"<file> : generate Python code as target file");
+		("-swift",Arg.String (fun dir ->
+			set_platform Swift dir;
+		),"<directory> : generate Swift code into target directory");
 		("-xml",Arg.String (fun file ->
 			Parser.use_doc := true;
 			xml_out := Some file
@@ -1430,6 +1433,9 @@ try
 		| Python ->
 			add_std "python";
 			"python"
+		| Swift ->
+			add_std "swift";
+			"swift"
 	) in
 	(* if we are at the last compilation step, allow all packages accesses - in case of macros or opening another project file *)
 	begin match com.display with
@@ -1536,6 +1542,9 @@ try
 		| Python ->
 			Common.log com ("Generating python in : " ^ com.file);
 			Genpy.generate com;
+		| Swift ->
+			Common.log com ("Generating swift in : " ^ com.file);
+			Genswift.generate com;
 		);
 	end;
 	Sys.catch_break false;

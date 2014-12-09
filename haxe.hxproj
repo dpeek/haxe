@@ -140,6 +140,9 @@
     <hidden path="genpy.obj" />
     <hidden path="genpy.cmi" />
     <hidden path="genpy.cmx" />
+    <hidden path="genswift.obj" />
+    <hidden path="genswift.cmi" />
+    <hidden path="genswift.cmx" />
     <hidden path="analyzer.cmi" />
     <hidden path="analyzer.cmx" />
     <hidden path="analyzer.obj" />
